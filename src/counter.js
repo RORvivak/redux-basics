@@ -7,17 +7,24 @@ class Counter extends Component {
         <div align= "center">
             <div>Result is {this.props.ctr}</div>
             <div><input type="text" name="counter_text"/></div>
-            <div><button>Add</button></div>
+            <div><button onClick={this.props.incrementer}>Add</button></div>
         </div>
     )
     }
 }
-const mapPropsToState = (state) => {
+const mapStateToProps = (state) => {
  return(
      {
         ctr: state.counter
      }
  )
-}
-export default connect(mapPropsToState)(Counter);
+    }
 
+ const mapMethodToProps = (dispatch) => {
+     return(
+         {
+            incrementer: () =>  dispatch({type: "Increment"})
+         }
+     )
+ }
+export default connect(mapStateToProps, mapMethodToProps)(Counter)
