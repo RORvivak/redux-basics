@@ -1,14 +1,23 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
-const Counter = (props) => {
+class Counter extends Component {
+    render(){
     return(
         <div align= "center">
-            <div>Result is {props.value}</div>
+            <div>Result is {this.props.ctr}</div>
             <div><input type="text" name="counter_text"/></div>
             <div><button>Add</button></div>
         </div>
     )
+    }
 }
-
-export default Counter;
+const mapPropsToState = (state) => {
+ return(
+     {
+        ctr: state.counter
+     }
+ )
+}
+export default connect(mapPropsToState)(Counter);
 
